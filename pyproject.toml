@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dpdgmoe"
+version = "1.0.0"
+description = "Daily Prior and Dynamic-Graph Mixture of Experts for multi-horizon photovoltaic power forecasting"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+dependencies = ["torch>=2.2", "numpy>=1.26", "pandas>=2.2", "einops>=0.8"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["dpdgmoe*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

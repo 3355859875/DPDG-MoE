@@ -1,0 +1,298 @@
+{
+  "prior_weights": [
+    0.6,
+    0.25,
+    0.1,
+    0.05
+  ],
+  "defaults": {
+    "hidden_dim": 96,
+    "expert_hidden_dim": 192,
+    "dropout": 0.25,
+    "graph_block": 16,
+    "graph_heads": 4,
+    "graph_topk": 4,
+    "n_specific_experts": 6,
+    "specific_topk": 2,
+    "n_shared_experts": 2,
+    "memory_size": 128,
+    "memory_threshold": 0.15,
+    "lr": 0.0002,
+    "min_lr": 1e-06,
+    "weight_decay": 0.0005,
+    "grad_clip": 1.0,
+    "loss_delta": 0.5,
+    "daylight_threshold": 0.02,
+    "daylight_weight": 1.0,
+    "ramp_weight": 0.3,
+    "residual_reg_weight": 0.02,
+    "moe_balance_loss_weight": 0.0001,
+    "prior_lr": 0.001
+  },
+  "horizon_overrides": {
+    "16": {
+      "hidden_dim": 96,
+      "expert_hidden_dim": 256,
+      "dropout": 0.3,
+      "lr": 0.0002893266833595502,
+      "weight_decay": 0.0009146488047472733,
+      "daylight_weight": 2.0,
+      "ramp_weight": 0.5,
+      "residual_reg_weight": 0.01848653453768191,
+      "moe_balance_loss_weight": 1.044824054763367e-06
+    },
+    "48": {
+      "hidden_dim": 64,
+      "expert_hidden_dim": 128,
+      "dropout": 0.2,
+      "lr": 5.624968190390585e-05,
+      "weight_decay": 8.444896761559424e-06,
+      "daylight_weight": 1.0,
+      "ramp_weight": 0.6000000000000001,
+      "residual_reg_weight": 0.005355798930447589,
+      "moe_balance_loss_weight": 0.00011574799180167723
+    },
+    "96": {
+      "hidden_dim": 64,
+      "expert_hidden_dim": 128,
+      "dropout": 0.35,
+      "lr": 5.0385926457139154e-05,
+      "weight_decay": 0.00010284649830779918,
+      "daylight_weight": 2.5,
+      "ramp_weight": 1.0,
+      "residual_reg_weight": 0.0012080758098652407,
+      "moe_balance_loss_weight": 1.0699323471084361e-06
+    }
+  },
+  "variants": {
+    "full_model": {},
+    "fixed_prior": {
+      "prior_mode": "fixed"
+    },
+    "no_prior": {
+      "prior_mode": "none",
+      "residual_reg_weight": 0.0
+    },
+    "adaptive_prior": {
+      "prior_mode": "adaptive"
+    },
+    "prior_only": {
+      "residual_mode": "none",
+      "residual_reg_weight": 0.0,
+      "moe_balance_loss_weight": 0.0
+    },
+    "static_graph": {
+      "graph_mode": "static"
+    },
+    "no_graph": {
+      "graph_mode": "none"
+    },
+    "specific_only": {
+      "use_shared": false
+    },
+    "shared_only": {
+      "use_specific": false,
+      "moe_balance_loss_weight": 0.0
+    },
+    "dense_routing": {
+      "sparse_routing": false
+    },
+    "single_residual": {
+      "residual_mode": "single",
+      "moe_balance_loss_weight": 0.0
+    },
+    "no_state_memory": {
+      "use_state_memory": false
+    },
+    "no_future_nwp": {
+      "use_future_nwp": false
+    },
+    "no_daily_feature": {
+      "use_daily_feature": false
+    },
+    "no_power_summary": {
+      "use_power_summary": false
+    }
+  },
+  "paper_tasks": {
+    "_comment": "The 20 site-horizon runs reported for DPDG-MoE in the paper: one training run each, with the listed seed, batch size and task-specific overrides (applied after horizon_overrides). For the 4-h, 12-h and 1-day horizons, ablation_seed is the seed of the reference run used in the ablation and sensitivity studies; those runs use no task-specific overrides and the same batch size, except prior_only (batch 128 at 4 h, 192 at 12 h and 1 day).",
+    "tasks": [
+      {
+        "station": "S-1",
+        "horizon": 16,
+        "seed": 2035,
+        "batch_size": 256,
+        "overrides": {},
+        "ablation_seed": 2035
+      },
+      {
+        "station": "S-1",
+        "horizon": 48,
+        "seed": 2029,
+        "batch_size": 384,
+        "overrides": {},
+        "ablation_seed": 2029
+      },
+      {
+        "station": "S-1",
+        "horizon": 96,
+        "seed": 2030,
+        "batch_size": 352,
+        "overrides": {},
+        "ablation_seed": 2030
+      },
+      {
+        "station": "S-1",
+        "horizon": 384,
+        "seed": 2029,
+        "batch_size": 192,
+        "overrides": {}
+      },
+      {
+        "station": "S-1",
+        "horizon": 672,
+        "seed": 2028,
+        "batch_size": 160,
+        "overrides": {}
+      },
+      {
+        "station": "S-2",
+        "horizon": 16,
+        "seed": 2026,
+        "batch_size": 256,
+        "overrides": {},
+        "ablation_seed": 2026
+      },
+      {
+        "station": "S-2",
+        "horizon": 48,
+        "seed": 2026,
+        "batch_size": 384,
+        "overrides": {},
+        "ablation_seed": 2026
+      },
+      {
+        "station": "S-2",
+        "horizon": 96,
+        "seed": 2026,
+        "batch_size": 352,
+        "overrides": {},
+        "ablation_seed": 2026
+      },
+      {
+        "station": "S-2",
+        "horizon": 384,
+        "seed": 2034,
+        "batch_size": 192,
+        "overrides": {}
+      },
+      {
+        "station": "S-2",
+        "horizon": 672,
+        "seed": 2031,
+        "batch_size": 160,
+        "overrides": {}
+      },
+      {
+        "station": "S-3",
+        "horizon": 16,
+        "seed": 2032,
+        "batch_size": 256,
+        "overrides": {},
+        "ablation_seed": 2032
+      },
+      {
+        "station": "S-3",
+        "horizon": 48,
+        "seed": 2026,
+        "batch_size": 384,
+        "overrides": {},
+        "ablation_seed": 2026
+      },
+      {
+        "station": "S-3",
+        "horizon": 96,
+        "seed": 2030,
+        "batch_size": 352,
+        "overrides": {},
+        "ablation_seed": 2030
+      },
+      {
+        "station": "S-3",
+        "horizon": 384,
+        "seed": 2027,
+        "batch_size": 192,
+        "overrides": {}
+      },
+      {
+        "station": "S-3",
+        "horizon": 672,
+        "seed": 2027,
+        "batch_size": 160,
+        "overrides": {
+          "hidden_dim": 64,
+          "expert_hidden_dim": 128,
+          "dropout": 0.35,
+          "lr": 5.0385926457139154e-05,
+          "weight_decay": 0.00010284649830779918,
+          "daylight_weight": 2.5,
+          "ramp_weight": 1.0,
+          "residual_reg_weight": 0.0012080758098652407,
+          "moe_balance_loss_weight": 1.0699323471084361e-06
+        }
+      },
+      {
+        "station": "S-4",
+        "horizon": 16,
+        "seed": 2026,
+        "batch_size": 256,
+        "overrides": {
+          "lr": 0.0001446633416797751
+        },
+        "ablation_seed": 2030
+      },
+      {
+        "station": "S-4",
+        "horizon": 48,
+        "seed": 2030,
+        "batch_size": 384,
+        "overrides": {},
+        "ablation_seed": 2030
+      },
+      {
+        "station": "S-4",
+        "horizon": 96,
+        "seed": 2035,
+        "batch_size": 352,
+        "overrides": {},
+        "ablation_seed": 2035
+      },
+      {
+        "station": "S-4",
+        "horizon": 384,
+        "seed": 2029,
+        "batch_size": 192,
+        "overrides": {
+          "hidden_dim": 64,
+          "expert_hidden_dim": 128,
+          "dropout": 0.35,
+          "lr": 5.0385926457139154e-05,
+          "weight_decay": 0.00010284649830779918,
+          "daylight_weight": 2.5,
+          "ramp_weight": 1.0,
+          "residual_reg_weight": 0.0012080758098652407,
+          "moe_balance_loss_weight": 1.0699323471084361e-06
+        }
+      },
+      {
+        "station": "S-4",
+        "horizon": 672,
+        "seed": 2032,
+        "batch_size": 160,
+        "overrides": {
+          "lr": 5e-05
+        }
+      }
+    ]
+  }
+}

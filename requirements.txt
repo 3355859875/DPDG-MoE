@@ -1,0 +1,5 @@
+# The experiments of the paper used Python 3.11 and torch 2.11.0 (CUDA 12.8).
+torch>=2.2
+numpy>=1.26
+pandas>=2.2
+einops>=0.8

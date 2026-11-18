@@ -1,0 +1,50 @@
+DPDG-MoE
+Copyright 2026 The DPDG-MoE Authors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE),
+except for the third-party components listed below, which keep their original
+licenses and copyright notices.
+
+Third-party code (dpdgmoe/baselines/)
+-------------------------------------
+
+The following baseline implementations were copied from their public
+repositories. Changes: import paths were adapted to this package and unused
+imports were removed; the network code is otherwise unmodified.
+
+* PatchTST — https://github.com/yuqinie98/PatchTST (Apache License 2.0)
+  dpdgmoe/baselines/patchtst.py, layers/patchtst_backbone.py, layers/patchtst_layers.py
+* RevIN — https://github.com/ts-kim/RevIN (MIT License)
+  dpdgmoe/baselines/layers/revin.py
+* TimeMixer — https://github.com/kwuking/TimeMixer (Apache License 2.0)
+  dpdgmoe/baselines/timemixer.py, layers/timemixer_decomp.py, layers/timemixer_embed.py,
+  layers/timemixer_norm.py
+* Time-Series-Library (iTransformer, TimesNet and shared layers) —
+  https://github.com/thuml/Time-Series-Library (MIT License)
+  dpdgmoe/baselines/itransformer.py, timesnet.py, layers/embed.py, layers/conv_blocks.py,
+  layers/self_attention.py, layers/transformer_encdec.py
+* Cross-Unet — implementation released with Zhang et al., "Rethinking the use of deep
+  learning methods for photovoltaic power forecasting", Nature Communications 17, 7613 (2026)
+  dpdgmoe/baselines/cross_unet.py, layers/crossunet_attention.py, layers/crossunet_encdec.py
+
+Structural adapters (dpdgmoe/baselines/adapted/)
+------------------------------------------------
+
+AMPDNet, G-GraphTST, TFCNet, CausalFormer, SolarCAST and WinFlashDilated-former
+are independent re-implementations written for this benchmark from the
+descriptions in their papers. They contain no code from the authors'
+repositories and are covered by the Apache License 2.0 of this product.
+
+* AMPDNet — Adaptive multi-scale perception-based decoupled network for efficient PV power forecasting (Solar Energy, 2026)
+* G-GraphTST — Spatiotemporal learning for multivariate long-term photovoltaic power forecasting (Expert Systems with Applications, 2026)
+* TFCNet — A time-frequency collaborative network with endogenous-exogenous variable decoupling for enhanced photovoltaic power forecasting (Energy, 2025)
+* CausalFormer — CausalFormer: An Interpretable Transformer for Temporal Causal Discovery (IEEE TKDE, 2024)
+* SolarCAST — Solar Forecasting with Causality: A Graph-Transformer Approach to Spatiotemporal Dependencies (CIKM, 2025)
+* WinFlashDilated-former — Robust and efficient multihorizon photovoltaic power forecasting with a dilated multi-scale Transformer (Solar Energy, 2025)
+
+Data (data/)
+------------
+
+The station files are taken unchanged from the PVOD dataset (Yao et al., Solar
+Energy 230, 122-130, 2021) via the preprocessed archive released with
+Cross-Unet. They are subject to the terms of the original release.
