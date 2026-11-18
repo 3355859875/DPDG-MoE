@@ -163,19 +163,10 @@ seeds 2026, 2027 and 2028 for each comparator.
 | Vendored | Cross-Unet, PatchTST, TimeMixer, iTransformer, TimesNet | Official code (see [`NOTICE`](NOTICE)), wrapped by [`BaselineAdapter`](dpdgmoe/baselines/adapter.py), which resamples future NWP to the history length and adds a step-aligned GRU correction head. Adam, lr 1e-4. |
 | Structural adapters | AMPDNet, G-GraphTST, TFCNet, CausalFormer, SolarCAST, WinFlashDilated-former | Re-implementations in [`dpdgmoe/baselines/adapted/`](dpdgmoe/baselines/adapted/) that keep each paper's distinguishing operations and condition every forecast step on future NWP. AdamW, lr 2e-4, weight decay 5e-4, gradient clipping 1.0. |
 
-Training budgets of the comparator runs in the paper (early-stopping patience 8 for all):
-
-| Models | Batch size | Maximum epochs |
-| --- | --- | --- |
-| Cross-Unet, PatchTST, TimeMixer | 32 | 100 |
-| AMPDNet, G-GraphTST, TFCNet | 32 | 50 |
-| iTransformer, TimesNet, CausalFormer, SolarCAST, WinFlashDilated-former | 128 | 50 |
-
 ```bash
-python scripts/run_benchmark.py --models Cross-Unet PatchTST TimeMixer --batch-size 32 --epochs 100 --output-dir runs/comparators
-python scripts/run_benchmark.py --models AMPDNet G-GraphTST TFCNet --batch-size 32 --epochs 50 --output-dir runs/comparators
-python scripts/run_benchmark.py --models iTransformer TimesNet CausalFormer SolarCAST WinFlashDilated-former \
-    --batch-size 128 --epochs 50 --output-dir runs/comparators
+python scripts/run_benchmark.py --output-dir runs/comparators --models \
+    Cross-Unet AMPDNet G-GraphTST TFCNet SolarCAST WinFlashDilated-former \
+    PatchTST TimeMixer iTransformer TimesNet CausalFormer
 ```
 
 The structural adapters are **not** reproductions of the authors' repositories. `ADAPTER_METADATA` in
