@@ -43,7 +43,7 @@ comments reference the equation numbers of the paper.
 Python ≥ 3.10. The experiments of the paper used PyTorch 2.11.0 (CUDA 12.8) on one NVIDIA RTX 4090.
 
 ```bash
-git clone <this repository> && cd <repository>
+git clone https://github.com/3355859875/DPDG-MoE.git && cd DPDG-MoE
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt        # install the torch build for your CUDA version first if needed
 ```
