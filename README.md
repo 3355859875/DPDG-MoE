@@ -46,9 +46,10 @@ Python ≥ 3.10. The experiments of the paper used PyTorch 2.11.0 (CUDA 12.8) on
 git clone https://github.com/3355859875/DPDG-MoE.git && cd DPDG-MoE
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt        # install the torch build for your CUDA version first if needed
+pip install -e .                       # makes `import dpdgmoe` work from any directory
 ```
 
-or, with [uv](https://docs.astral.sh/uv/): `uv sync` (uses `uv.lock`) or `uv venv && uv pip install -r requirements.txt`.
+or, with [uv](https://docs.astral.sh/uv/): `uv sync` (uses `uv.lock`; installs the package as well).
 
 ## Data
 
@@ -59,7 +60,7 @@ Column descriptions, provenance and checksums are in [`data/README.md`](data/REA
 
 Protocol (identical for every model):
 
-- input: 15-day history (1,440 steps) of 7 onsite variables, 6 NWP variables and calendar features, plus the 6 NWP variables over the forecast window;
+- input: 15-day history (1,440 steps) of 6 onsite weather variables and past power, 6 NWP variables and calendar features, plus the 6 NWP variables over the forecast window;
 - horizons: 16, 48, 96, 384 and 672 steps (4 h, 12 h, 1 d, 4 d, 7 d); the code also accepts 1,440 steps (15 d);
 - chronological 80/10/10 split; a forecast window must lie entirely inside one segment;
 - all scaling statistics come from the training segment; model selection uses the validation segment only.
